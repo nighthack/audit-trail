@@ -1,0 +1,38 @@
+{
+  "name": "@nighthack/audit-trail",
+  "version": "1.2",
+  "description": "This is the official Javascript package for audit trail for TM30 global",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --verbose --env=node --runInBand --detectOpenHandles"
+  },
+  "keywords": [
+    "audit",
+    "trail",
+    "audit",
+    "trail",
+    "tm30"
+  ],
+  "author": "TM30",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.3.0",
+    "dotenv": "^8.1.0",
+    "luxon": "^1.22.0",
+    "uuid": "^9.0.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nighthack/audit-trail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nighthack/audit-trail/issues"
+  },
+  "homepage": "https://github.com/nighthack/audit-trail"
+}
