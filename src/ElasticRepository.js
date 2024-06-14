@@ -87,8 +87,10 @@ class ElasticRepository {
   }
   async search(body) {
     try {
+      const index=body.index
+      delete body.index;
       let search = await this.client.search({
-        index: this.baseIndex,
+        index: index|| this.baseIndex,
         body: body,
       });
 
