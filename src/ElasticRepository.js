@@ -4,11 +4,11 @@ const { v4: uuid } = require("uuid");
 const debug = require("debug")("app:debug");
 class ElasticRepository {
   constructor() {
-    if (!process.env.AUDIT_INDEX) {
-      throw new Error("AUDIT_INDEX NOT SET");
-    }
-
-    this.client = new elasticsearch.Client({
+    if (!process.env.AUDIT_INDEX || !process.env.ELASTICSEARCH_HOST) {
+      // throw new Error("AUDIT_INDEX NOT SET");
+       console.log("AUDIT env not set")
+    }else{
+      this.client = new elasticsearch.Client({
       node: this.buildUrl(),
     });
     this.baseIndex = process.env.AUDIT_INDEX;
@@ -21,6 +21,7 @@ class ElasticRepository {
         if (err.message == "resource_already_exists_exception") return;
         throw new Error(err.message);
       });
+    }
   }
 
   async createIndex(index) {
