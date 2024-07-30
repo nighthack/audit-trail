@@ -3,17 +3,18 @@ const repository  = new (require("./src/ElasticRepository"))();
 const {DateTime} = require("luxon");
 
 const trail = async (message, action, meta = {}) => {
+    let data=meta?.data ?meta.data:meta
     const payload = {
         service: process.env.APP_NAME || "audit-trail",
         message,
         action,
-        ...meta,
+        ...data,
         timestamp: DateTime.local().toMillis()
     };
 
     console.log("Payload to elastic search", payload);
 
-    return repository.create(payload);
+    return repository.create(payload,meta?.index);
 };
 
 

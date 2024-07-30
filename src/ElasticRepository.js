@@ -61,9 +61,9 @@ class ElasticRepository {
     return elasticUrl;
   }
 
-  create(body) {
+  create(body,index) {
     return this.client.index({
-      index: this.baseIndex,
+      index: index?index:this.baseIndex,
       id: uuid(),
       body: body,
     });
