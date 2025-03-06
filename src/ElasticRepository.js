@@ -3,15 +3,15 @@ const elasticsearch = require("@elastic/elasticsearch");
 const { v4: uuid } = require("uuid");
 const debug = require("debug")("app:debug");
 class ElasticRepository {
-  constructor() {
-    if (!process.env.AUDIT_INDEX) {
+  constructor(indexName = process.env.AUDIT_INDEX ) {
+    if (!indexName) {
       throw new Error("AUDIT_INDEX NOT SET");
     }
 
     this.client = new elasticsearch.Client({
       node: this.buildUrl(),
     });
-    this.baseIndex = process.env.AUDIT_INDEX;
+    this.baseIndex = indexName;
 
     this.createIndex(this.baseIndex)
       .then((res) => {
